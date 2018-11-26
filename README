@@ -1,0 +1,20 @@
+--
+-----------------------------------------------------------------
+---OOOOOO-----OOOO-----OOOOOOOOOOOOOOOO------OOOOOOO----OOOOOO---
+---OOOOOOOO---OOOO-----OOOOOOOOOOOOOOOO------OOOOOOOO--OOOOOOO---
+---OOOO-OOOO--OOOO------------OOO------------OOO-OOOOO-OOO-OOO---
+---OOOO--OOOO-OOOO------------OOO------------OOO---OOOOOO--OOO---
+---OOOO---OOOOOOOO------------OOO------------OOO-----OO----OOO---
+---OOOO-----OOOOOO-----OOOOOOOOOOOOOOOO------OOO-----------OOO---
+---OOOO-------OOOO-----OOOOOOOOOOOOOOOO------OOO-----------OOO---
+-----------------------------------------------------------------
+
+--
+To play nim run the Nim program and choose first size of the heap, and the max size that a hand can be.
+The computer will then randomly decide who gets to start.
+Take turns with the computer player taking a number between 1 and the maximum hand specified earlier.
+The person to takes the last object from the heap is the winner.
+The computer will annouce the winner and also note who should've won, as the initial conditions of nim gurentees a winner if
+the player knows the proper algorithm.
+--
+have fun!
