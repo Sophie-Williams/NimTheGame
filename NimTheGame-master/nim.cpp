@@ -32,25 +32,13 @@ int computerTurn(int heap, int maxHand){//computer takes turn
 void whoShouldHaveWon(int initialHeap,int maxHand, bool userStarted){
 	cout << "Prediction of who is the winner of the game" << endl; 
 	if (initialHeap != 0) {
-		if (userStarted == computerTurn(initialHeap, maxHand))
-		{
-			cout << "COMPUTER WINS" << endl;
-		}
-		else
-		{
-			cout << "HUMAN WINS" << endl;
-		}
+		if (userStarted == computerTurn(initialHeap, maxHand)) cout << "COMPUTER WINS" << endl;
+		else cout << "HUMAN WINS" << endl;
 	}
 	else 
 	{
-		if (userStarted == computerTurn(initialHeap, maxHand))
-		{
-			cout << "HUMAN WINS" << endl;
-		}
-		else
-		{
-			cout << "COMPUTER WINS" << endl;
-		}
+		if (userStarted == computerTurn(initialHeap, maxHand)) cout << "HUMAN WINS" << endl;
+		else cout << "COMPUTER WINS" << endl;
 	}
 }
 
