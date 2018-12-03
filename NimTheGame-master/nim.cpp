@@ -29,8 +29,29 @@ int computerTurn(int heap, int maxHand){//computer takes turn
     return (heap % (maxHand+1) );//if computer is in this state its going to win, take proper number of pieces
 }
 
-void whoShouldHaveWon(int initialHeap,int maxHand, bool userStarted){//TERRY BUILD THIS FUNCTION TO COUT ANSWER
-    cout << "Ask Terry. IDK..." << endl;
+void whoShouldHaveWon(int initialHeap,int maxHand, bool userStarted){
+	cout << "Prediction of who is the winner of the game" << endl; 
+	if (initialHeap != 0) {
+		if (userStarted == computerTurn(initialHeap, maxHand))
+		{
+			cout << "COMPUTER WINS" << endl;
+		}
+		else
+		{
+			cout << "HUMAN WINS" << endl;
+		}
+	}
+	else 
+	{
+		if (userStarted == computerTurn(initialHeap, maxHand))
+		{
+			cout << "HUMAN WINS" << endl;
+		}
+		else
+		{
+			cout << "COMPUTER WINS" << endl;
+		}
+	}
 }
 
 void play(){//function to play a full game of nim
