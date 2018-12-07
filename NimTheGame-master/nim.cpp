@@ -30,15 +30,17 @@ int computerTurn(int heap, int maxHand){//computer takes turn
 }
 
 void whoShouldHaveWon(int initialHeap,int maxHand, bool userStarted){
-	cout << "Prediction of who is the winner of the game" << endl; 
-	if (initialHeap != 0) {
-		if (userStarted == computerTurn(initialHeap, maxHand)) cout << "COMPUTER WINS" << endl;
-		else cout << "HUMAN WINS" << endl;
+	// displays the winner of the game based on who starts the game. 
+	cout << "WHO SHOULD HAVE WON?? " << endl;
+
+	if ((maxHand + 2 <= initialHeap) && (initialHeap <= 2 * maxHand + 1)) { //if the maxHand +2 is <= than initial Heap AND initialHeap is <= to 2*maxHand +1 then 
+		if (userStarted) cout << "HUMAN WINS" << endl; // if the computer starts then the human wins. 
+		else cout << "COMPUTER WINS" << endl; // else the human starts then the computer wins. 
 	}
-	else 
+	else // if the two conditions are not met then this also shows the maxHand + 1
 	{
-		if (userStarted == computerTurn(initialHeap, maxHand)) cout << "HUMAN WINS" << endl;
-		else cout << "COMPUTER WINS" << endl;
+		if (userStarted)) cout << "COMPUTER WINS" << endl;  
+		else cout << "HUMAN WINS" << endl; 
 	}
 }
 
@@ -53,7 +55,7 @@ void play(){//function to play a full game of nim
         char response;
         cout << "Would you like to go first>: ('y' or 'n')" << endl;
         response = safeCin<char>();
-        if(response == 'y') userStarted = true;
+        if(response == 'y') userStarted = true; 
         int userHand,computerHand;
 
         if(!userStarted){
