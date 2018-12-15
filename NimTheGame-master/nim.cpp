@@ -10,7 +10,7 @@ using namespace std;
 template <typename T>
 T safeCin(){//Safe Cin function resricts users to only acceptable user inputs
     T n;
-    cin >> n;
+    cin >> n;         
     while (cin.fail())//keep asking for good inputs until user does it right
     {
         cin.clear();
@@ -29,66 +29,90 @@ int computerTurn(int heap, int maxHand){//computer takes turn
     return (heap % (maxHand+1) );//if computer is in this state its going to win, take proper number of pieces
 }
 
-void whoShouldHaveWon(int initialHeap,int maxHand, bool userStarted){
-	// displays the winner of the game based on who starts the game. 
-	cout << "WHO SHOULD HAVE WON?? " << endl;
+/////////////////////////////////////////////////////////////
+///
+/// This function is supposed to guess who should have won the game
+/// depening on which player goes first, either the computer or the human wins.
+///
+/////////////////////////////////////////////////////////////
 
-	if ((maxHand + 2 <= initialHeap) && (initialHeap <= 2 * maxHand + 1)) { //if the maxHand +2 is <= than initial Heap AND initialHeap is <= to 2*maxHand +1 then 
-		if (userStarted) cout << "HUMAN WINS" << endl; // if the computer starts then the human wins. 
-		else cout << "COMPUTER WINS" << endl; // else the human starts then the computer wins. 
+//called in main
+void whoShouldHaveWon(int initialHeap, int maxHand, bool userStarted) {
+	                    // if userStarted is true then enter in if
+	if (userStarted) {
+
+		// it checks on the inital conditions... if the initialHeap is divisible by the (maxHand +1) and it equals 0 or if the initalHeap is less than or equal to the maxhand then
+		if (initialHeap % (maxHand + 1) == 0 || initialHeap <= maxHand) {    // check condition and to display
+			cout << "Based on initial conditions, human should have won!" << endl;   //display
+		}
+		else
+		{
+		   cout << "Based on initial conditions, computer should have won!" << endl;    //display
+		}
 	}
-	else // if the two conditions are not met then this also shows the maxHand + 1
+	else
 	{
-		if (userStarted)) cout << "COMPUTER WINS" << endl;  
-		else cout << "HUMAN WINS" << endl; 
+		// it checks on the inital conditions... if the initialHeap is divisible by the (maxHand +1) and it equals 0 or if the initalHeap is less than to the maxhand then
+		if (initialHeap % (maxHand + 1) == 0 && initialHeap < maxHand) {
+			cout << "$$Based on initial conditions, computer should have won!" << endl;    //display
+		}
+		else
+		{
+			cout << "$$Based on initial conditions, human should have won!" << endl;       //display
+		}
+
+
 	}
 }
 
 void play(){//function to play a full game of nim
-    int heap,maxHand;
-        cout << "Choose a heap size:";
-        heap = safeCin<int>();
+        int heap,maxHand;
+        cout << "Choose a heap size: "; 
+        heap = safeCin<int>(); // take input and place in heap
         int initialHeap = heap;
-        cout << endl << "Choose a max hand size:";
-        maxHand =safeCin<int>();
-        bool userStarted = false;
+        cout << endl << "Choose a max hand size: ";
+        maxHand =safeCin<int>();  //takes input and place in maxhand
+        bool userStarted = false;  //declare boolean variable and initialize with false
         char response;
         cout << "Would you like to go first>: ('y' or 'n')" << endl;
-        response = safeCin<char>();
-        if(response == 'y') userStarted = true; 
+        response = safeCin<char>();  // takes input and place in response
+        if(response == 'y') userStarted = true;  // checks response, if it is 'y' update userStarted to true
         int userHand,computerHand;
 
-        if(!userStarted){
-            computerHand = computerTurn(heap,maxHand);
+        if(!userStarted){ //userStarted is false then it enter in the if condition
+            computerHand = computerTurn(heap,maxHand); //calls the computerTurn Function adn return value stor in computerHand
             heap -= computerHand;
-            cout << "Computer took " << computerHand << " from pile. There are " << heap <<" items left in heap." << endl;
-            if(heap <= 0){
-                cout << "The computer won."<< endl;
-                whoShouldHaveWon(initialHeap, maxHand, userStarted);
+            cout << endl << "Computer took " << computerHand << " from pile." << endl;
+            cout << "There are " << heap <<" items left in heap." << endl;
+            if(heap <= 0){ // checks if heap is <= 0 then it enters in the if condition
+                cout << "THE COMPUTER WON."<< endl;
+                whoShouldHaveWon(initialHeap, maxHand, userStarted); //call whoShouldHaveWon function
                 return;
             }
         }
 
-        while(true){
-            cout << "Choose a number between 1 and " << maxHand << " to take from pile: ";
-            userHand = safeCin<int>();
-            if(userHand > maxHand || userHand < 1){
-                cout << "CHEATER! You cant take " << userHand << " amount of items.";
+        while(true){ //infinite loop it only exist when it reached to return
+            cout << endl << "Choose a number between 1 and " << maxHand << " to take from pile: ";
+            userHand = safeCin<int>();  //take input from user 
+            if(userHand > maxHand || userHand < 1){  // checks if the userHand is greater than maxHand or smaller that 1 
+                cout << "CHEATER! You can't take " << userHand << " amount of items."; //displays that the user has made an illegal move
                 return;
             }
             heap -= userHand;
-            if(heap <= 0){
-                cout << "You won!"<< endl;
-                whoShouldHaveWon(initialHeap, maxHand, userStarted);
+            if(heap <= 0){  // checks conidition if heap <= 0
+                cout << endl;
+                cout << "YOU WON! "<< endl;
+                whoShouldHaveWon(initialHeap, maxHand, userStarted); // calls the whoShouldHaveWon Function 
                 return;
             }
-            cout << "There are now " << heap << "items in heap." << endl;
-            computerHand = computerTurn(heap,maxHand);
+            cout << "There are now " << heap << " items in heap. " << endl; // displays the amount of items left in the heap
+            cout << endl;
+            computerHand = computerTurn(heap,maxHand);  // calls the computerTurn Function
             heap -= computerHand;
             cout << "Computer took " << computerHand << " from pile. There are " << heap <<" items left in heap." << endl;
             if(heap <= 0){
-                cout << "The computer won."<< endl;
-                whoShouldHaveWon(initialHeap, maxHand, userStarted);
+                cout << endl << "THE COMPUTER WON."<< endl;
+                whoShouldHaveWon(initialHeap, maxHand, userStarted); // calls the whoShouldHaveWon Function 
                 return;
             }
         }
